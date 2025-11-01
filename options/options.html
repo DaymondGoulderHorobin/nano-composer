@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nano Options</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main class="wrap">
+    <h1>Nano Options</h1>
+    <p>These preferences mirror the popup. Use this page for a larger view.</p>
+
+    <section>
+      <label>Default tone
+        <select id="default_tone">
+          <option value="formal">Formal</option>
+          <option value="casual">Casual</option>
+          <option value="grammar">Grammar</option>
+        </select>
+      </label>
+    </section>
+
+    <section>
+      <label>Target language code
+        <input id="target_language" maxlength="10" placeholder="en" />
+      </label>
+    </section>
+
+    <section class="row">
+      <label class="inline">
+        <input id="show_icon_on_focus" type="checkbox" />
+        Show icon on focus
+      </label>
+    </section>
+
+    <section class="row gap">
+      <button id="save">Save</button>
+      <button id="reset">Reset</button>
+    </section>
+
+    <footer>
+      <a id="shortcuts" href="chrome://extensions/shortcuts" target="_blank" rel="noreferrer">Edit keyboard shortcuts</a>
+    </footer>
+  </main>
+  <script src="options.js"></script>
+</body>
+</html>

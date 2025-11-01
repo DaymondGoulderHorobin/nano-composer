@@ -1,0 +1,85 @@
+{
+  "manifest_version": 3,
+  "name": "Nano Composer",
+  "version": "1.0.0",
+  "description": "AI-powered writing assistant that works directly in any text field. Rewrite, proofread, and compose with one click.",
+  "minimum_chrome_version": "128",
+
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "commands"
+  ],
+
+  "host_permissions": [
+    "<all_urls>"
+  ],
+
+  "background": {
+    "service_worker": "background/service-worker.js",
+    "type": "module"
+  },
+
+  "content_scripts": [
+    {
+      "matches": [ "<all_urls>" ],
+      "js": [ "content/overlay.js" ],
+      "run_at": "document_start", // Changed from "document_idle"
+      "all_frames": false
+    }
+  ],
+
+  "action": {
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "Nano Composer",
+    "default_popup": "popup/popup.html"
+  },
+
+  "options_page": "options/options.html",
+
+  "commands": {
+    "trigger-rewrite": {
+      "suggested_key": {
+        "default": "Alt+N",
+        "mac": "Alt+N"
+      },
+      "description": "Open Nano Composer menu"
+    },
+    "quick-formal": {
+      "suggested_key": { "default": "Alt+1" },
+      "description": "Quick rewrite to formal tone"
+    },
+    "quick-casual": {
+      "suggested_key": { "default": "Alt+2" },
+      "description": "Quick rewrite to casual tone"
+    },
+    "quick-grammar": {
+      "suggested_key": { "default": "Alt+3" },
+      "description": "Quick grammar fix"
+    }
+  },
+
+  "web_accessible_resources": [
+    {
+      "resources": [ "content/overlay.css", "icons/*.png" ],
+      "matches": [ "<all_urls>" ]
+    }
+  ],
+
+  "trial_tokens": [
+    "AgL/MMf8/0s/UUCqCTF/bAgHCR/GjKvs11cdFaKhNC2NkPeCpq3N1QuOZ8XfG2dAtBILHyF4OpjkH4IgpqDhBAMAAAB7eyJvcmlnaW4iOiJjaHJvbWUtZXh0ZW5zaW9uOi8vZGllaWRlYmpjZWpobmZscG5waW5nZGJnbG5ub2psYm8iLCJmZWF0dXJlIjoiQUlQcm9tcHRBUElNdWx0aW1vZGFsSW5wdXQiLCJleHBpcnkiOjE3NzQzMTA0MDB9",
+    "AqCE9lrb8GvAhhBLw4hlreSzaQfZWIaa6OH2nFG76BDvP6opV6G6GxSWKvFe6e/ALQx0G09AJsrNld59ePPEewoAAABueyJvcmlnaW4iOiJjaHJvbWUtZXh0ZW5zaW9uOi8vZGllaWRlYmpjZWpobmZscG5waW5nZGJnbG5ub2psYm8iLCJmZWF0dXJlIjoiQUlSZXdyaXRlckFQSSIsImV4cGlyeSI6MTc3NjcyOTYwMH0=",
+    "AmqdfoucQKpXIyfmYytClotN/fppR1wmknrR22rY2ysfGFg6ea+5fczIC0ZppNZlOTMDRpxib06dayqgieBM9goAAABseyJvcmlnaW4iOiJjaHJvbWUtZXh0ZW5zaW9uOi8vZGllaWRlYmpjZWpobmZscG5waW5nZGJnbG5ub2psYm8iLCJmZWF0dXJlIjoiQUlXcml0ZXJBUEkiLCJleHBpcnkiOjE3NzY3Mjk2MDB9"
+  ]
+}

@@ -1,0 +1,13 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Helvetica, Arial, sans-serif; color: #111; }
+.wrap { width: 320px; padding: 14px; display: grid; gap: 12px; }
+h1 { font-size: 16px; margin: 0 0 4px 0; }
+section { display: grid; gap: 6px; }
+label { display: grid; gap: 4px; font-size: 13px; }
+input, select, button { font-size: 14px; padding: 8px 10px; border-radius: 10px; border: 1px solid rgba(0,0,0,.2); }
+button { cursor: pointer; background: #111; color: #fff; border-color: #111; }
+button:hover { filter: brightness(1.08); }
+.row { display: flex; align-items: center; gap: 8px; }
+.inline { display: inline-flex; align-items: center; gap: 8px; }
+footer { font-size: 12px; }
+#status { font-size: 12px; color: #333; min-height: 1.2em; }

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nano Settings</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main class="wrap">
+    <h1>Nano Settings</h1>
+    <section>
+      <label>Default tone
+        <select id="default_tone">
+          <option value="formal">Formal</option>
+          <option value="casual">Casual</option>
+          <option value="grammar">Grammar</option>
+        </select>
+      </label>
+    </section>
+
+    <section>
+      <label>Target language code
+        <input id="target_language" maxlength="10" placeholder="en" />
+      </label>
+    </section>
+
+    <section class="row">
+      <label class="inline">
+        <input id="show_icon_on_focus" type="checkbox" />
+        Show icon on focus
+      </label>
+    </section>
+
+    <section class="row gap">
+      <button id="save">Save</button>
+      <button id="warmup">Warm up</button>
+      <button id="check">Check availability</button>
+    </section>
+
+    <section>
+      <output id="status" aria-live="polite"></output>
+    </section>
+
+    <footer>
+      <a id="shortcuts" href="chrome://extensions/shortcuts" target="_blank" rel="noreferrer">Edit keyboard shortcuts</a>
+    </footer>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,375 @@
+/* Nano overlay styles (Shadow DOM scoped) */
+:host {
+    all: initial;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Helvetica, Arial, sans-serif;
+    color-scheme: light dark;
+}
+
+.nano-hidden {
+    display: none !important;
+}
+
+/* Floating root is injected by content script and hosts this shadow tree */
+#nano-root {
+    all: initial;
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2147483646;
+    font-family: inherit;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Floating button                                                            */
+/* -------------------------------------------------------------------------- */
+.nano-btn {
+    pointer-events: auto;
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    border: 1px solid rgba(0,0,0,.12);
+    background: rgba(255,255,255,.96);
+    box-shadow: 0 2px 8px rgba(0,0,0,.15);
+    cursor: pointer;
+    user-select: none;
+    transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+
+    .nano-btn svg {
+        width: 18px;
+        height: 18px;
+        display: block;
+    }
+
+    .nano-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0,0,0,.2);
+        border-color: rgba(0,0,0,.18);
+    }
+
+    .nano-btn:active {
+        transform: translateY(0);
+    }
+
+    .nano-btn:focus-visible {
+        outline: 2px solid #2563eb; /* accessible focus ring */
+        outline-offset: 2px;
+    }
+
+/* -------------------------------------------------------------------------- */
+/* Menu container                                                             */
+/* -------------------------------------------------------------------------- */
+.nano-menu {
+    pointer-events: auto;
+    position: absolute;
+    min-width: 240px;
+    max-width: min(90vw, 420px);
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,.12);
+    background: rgba(255,255,255,.98);
+    box-shadow: 0 8px 24px rgba(0,0,0,.18);
+    padding: 8px;
+    font-size: 14px;
+}
+
+    .nano-menu[aria-hidden="true"] {
+        display: none;
+    }
+
+/* Header (matches overlay.js: <div class="nano-menu-header">) */
+.nano-menu-header {
+    font-weight: 600;
+    font-size: 13px;
+    color: #111;
+    padding: 4px 8px 8px 8px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Quick actions                                                              */
+/* -------------------------------------------------------------------------- */
+.nano-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    padding: 0 4px 8px 4px;
+}
+
+.nano-act {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid rgba(0,0,0,.14);
+    background: #fff;
+    color: #111;
+    transition: background-color .12s ease, border-color .12s ease, transform .12s ease;
+    font-size: 14px;
+}
+
+    .nano-act:hover,
+    .nano-act:focus-visible {
+        outline: none;
+        border-color: rgba(0,0,0,.2);
+        background: rgba(0,0,0,.04);
+    }
+
+    .nano-act:active {
+        transform: translateY(0);
+    }
+
+    .nano-act[disabled] {
+        opacity: .6;
+        cursor: not-allowed;
+    }
+
+/* -------------------------------------------------------------------------- */
+/* Compose block                                                              */
+/* -------------------------------------------------------------------------- */
+.nano-compose {
+    border-top: 1px solid rgba(0,0,0,.08);
+    margin-top: 6px;
+    padding-top: 8px;
+}
+
+    .nano-compose .nano-compose-label {
+        font-size: 12px;
+        color: #333;
+        padding: 0 4px 6px 4px;
+    }
+
+    .nano-compose .nano-compose-input {
+        display: block;
+        width: 100%;
+        min-height: 72px;
+        max-height: 200px;
+        resize: vertical;
+        padding: 8px 10px;
+        border-radius: 10px;
+        border: 1px solid rgba(0,0,0,.14);
+        background: #fff;
+        color: #111;
+        font: 13px/1.35 inherit;
+        box-sizing: border-box;
+    }
+
+        .nano-compose .nano-compose-input:focus-visible {
+            outline: 2px solid #2563eb;
+            outline-offset: 2px;
+        }
+
+    .nano-compose .nano-compose-buttons {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        justify-content: flex-end;
+        padding-top: 8px;
+    }
+
+.nano-btn-generate,
+.nano-btn-back {
+    appearance: none;
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 13px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color .12s ease, border-color .12s ease, transform .12s ease;
+}
+
+.nano-btn-generate {
+    border: 1px solid #2563eb;
+    background: #2563eb;
+    color: #fff;
+}
+
+    .nano-btn-generate:hover {
+        filter: brightness(1.05);
+    }
+
+    .nano-btn-generate:focus-visible {
+        outline: 2px solid #1d4ed8;
+        outline-offset: 2px;
+    }
+
+.nano-btn-back {
+    border: 1px solid rgba(0,0,0,.14);
+    background: #fff;
+    color: #111;
+}
+
+    .nano-btn-back:hover {
+        background: rgba(0,0,0,.04);
+        border-color: rgba(0,0,0,.2);
+    }
+
+    .nano-btn-back:focus-visible {
+        outline: 2px solid #2563eb;
+        outline-offset: 2px;
+    }
+
+/* -------------------------------------------------------------------------- */
+/* Status line and busy indicator                                             */
+/* -------------------------------------------------------------------------- */
+[data-status] {
+    margin-top: 6px;
+    padding: 4px 6px;
+    font-size: 12px;
+    color: #333;
+    min-height: 18px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+    [data-status][data-busy="1"]::before {
+        content: "";
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: 2px solid currentColor;
+        border-right-color: transparent;
+        animation: nano-spin 0.9s linear infinite;
+        opacity: .9;
+    }
+
+@keyframes nano-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Keyboard badge (if used in footer)                                         */
+/* -------------------------------------------------------------------------- */
+.nano-kbd {
+    font: 12px/1.2 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    padding: 1px 4px;
+    border: 1px solid rgba(0,0,0,.2);
+    border-bottom-width: 2px;
+    border-radius: 6px;
+    background: #fff;
+    color: #111;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Dark mode                                                                  */
+/* -------------------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+    .nano-btn {
+        background: rgba(24,24,27,.96);
+        border-color: rgba(255,255,255,.12);
+        box-shadow: 0 2px 8px rgba(0,0,0,.6);
+    }
+
+        .nano-btn svg {
+            filter: invert(1) brightness(1.2);
+        }
+
+    .nano-menu {
+        background: rgba(24,24,27,.98);
+        border-color: rgba(255,255,255,.14);
+        box-shadow: 0 8px 24px rgba(0,0,0,.7);
+    }
+
+    .nano-menu-header {
+        color: #e5e7eb;
+    }
+
+    .nano-act {
+        background: #18181b;
+        color: #e5e7eb;
+        border-color: rgba(255,255,255,.14);
+    }
+
+        .nano-act:hover,
+        .nano-act:focus-visible {
+            background: rgba(255,255,255,.06);
+            border-color: rgba(255,255,255,.22);
+        }
+
+    .nano-compose .nano-compose-label {
+        color: #d1d5db;
+    }
+
+    .nano-compose .nano-compose-input {
+        background: #18181b;
+        color: #e5e7eb;
+        border-color: rgba(255,255,255,.14);
+    }
+
+    .nano-btn-back {
+        background: #18181b;
+        color: #e5e7eb;
+        border-color: rgba(255,255,255,.14);
+    }
+
+        .nano-btn-back:hover {
+            background: rgba(255,255,255,.06);
+            border-color: rgba(255,255,255,.22);
+        }
+
+    [data-status] {
+        color: #d1d5db;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* High contrast                                                              */
+/* -------------------------------------------------------------------------- */
+@media (forced-colors: active) {
+    .nano-btn,
+    .nano-menu,
+    .nano-act,
+    .nano-compose .nano-compose-input,
+    .nano-btn-generate,
+    .nano-btn-back {
+        border: 1px solid CanvasText;
+    }
+
+    .nano-btn-generate {
+        background: Highlight;
+        color: HighlightText;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Reduced motion                                                             */
+/* -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    .nano-btn,
+    .nano-act,
+    .nano-btn-generate,
+    .nano-btn-back {
+        transition: none;
+    }
+
+    [data-status][data-busy="1"]::before {
+        animation: none;
+    }
+}
+
+/* Active selection state for action buttons */
+.nano-act[aria-pressed="true"],
+.nano-act[data-selected="1"] {
+    border-color: #2563eb;
+    background: rgba(37,99,235,.08);
+    box-shadow: 0 0 0 2px rgba(37,99,235,.14) inset;
+    font-weight: 600;
+}
+
+/* Dark mode tuning for the active state */
+@media (prefers-color-scheme: dark) {
+    .nano-act[aria-pressed="true"],
+    .nano-act[data-selected="1"] {
+        border-color: rgba(99,156,255,.9);
+        background: rgba(99,156,255,.14);
+        box-shadow: 0 0 0 2px rgba(99,156,255,.22) inset;
+    }
+}

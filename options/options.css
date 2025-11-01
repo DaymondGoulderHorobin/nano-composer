@@ -1,0 +1,12 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Helvetica, Arial, sans-serif; color: #111; }
+.wrap { max-width: 720px; margin: 0 auto; padding: 24px; display: grid; gap: 16px; }
+h1 { font-size: 20px; margin: 0 0 4px 0; }
+section { display: grid; gap: 6px; }
+label { display: grid; gap: 4px; font-size: 14px; }
+input, select, button { font-size: 14px; padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(0,0,0,.2); }
+button { cursor: pointer; background: #111; color: #fff; border-color: #111; }
+button:hover { filter: brightness(1.08); }
+.row { display: flex; align-items: center; gap: 8px; }
+.inline { display: inline-flex; align-items: center; gap: 8px; }
+footer { font-size: 12px; }
